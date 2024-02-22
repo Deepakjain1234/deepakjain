@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
-import AnimatedNumbers from "react-animated-numbers";
+// import AnimatedNumbers from "react-animated-numbers";
 
-// const AnimatedNumbers = dynamic(
-//   () => {
-//     return import("react-animated-numbers");
-//   },
-//   { ssr: false }
-// );
+const AnimatedNumbers = dynamic(
+  () => {
+    return import("react-animated-numbers");
+  },
+  { ssr: false }
+);
 
 const achievementsList = [
   {
