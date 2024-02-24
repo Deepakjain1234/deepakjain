@@ -43,36 +43,13 @@ const EmailSection = () => {
       subject: e.target.subject.value,
       message: e.target.message.value,
     };
-  
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
    const length=generateRandomString(20)
     set(ref(database,'portfolio/'+length), data).then(() => {
-      // Success.
-      console.log("done")
+      console.log("Message sent.");
+      setEmailSubmitted(true);
     }).catch((error) => {
       console.log(error);
     });
-
-    // Form the request for sending data to the server.
-    const options = {
-      // The method is POST because we are sending data.
-      method: "POST",
-      // Tell the server we're sending JSON.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Body of the request is the JSON data we created above.
-      body: JSONdata,
-    };
-
-    const response = await fetch(endpoint, options);
-    const resData = await response.json();
-
-    if (response.status === 200) {
-      console.log("Message sent.");
-      setEmailSubmitted(true);
-    }
   };
 
   return (
