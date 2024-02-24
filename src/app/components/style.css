@@ -1,0 +1,11 @@
+.logo-image{
+    display:none;
+}
+@media (max-width:600px) {
+    .logo-image{
+        display: block;
+    }
+    .logo-image1{
+        display: none;
+    } 
+}
