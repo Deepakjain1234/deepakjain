@@ -4,9 +4,37 @@ import GithubIcon from "../../../public/github-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set } from "firebase/database";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBdqtbdoErspd8Jq-Kn23hEWB-dCBRohQY",
+  authDomain: "portfolio-b53a2.firebaseapp.com",
+  databaseURL: "https://portfolio-b53a2-default-rtdb.firebaseio.com",
+  projectId: "portfolio-b53a2",
+  storageBucket: "portfolio-b53a2.appspot.com",
+  messagingSenderId: "211223860709",
+  appId: "1:211223860709:web:c9286e5e2eee1fe764cb0c",
+  measurementId: "G-P2Q31BM0Z1",
+  databaseURL: "https://portfolio-b53a2-default-rtdb.firebaseio.com"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+function generateRandomString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 const EmailSection = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,8 +43,16 @@ const EmailSection = () => {
       subject: e.target.subject.value,
       message: e.target.message.value,
     };
+  
     const JSONdata = JSON.stringify(data);
     const endpoint = "/api/send";
+   const length=generateRandomString(20)
+    set(ref(database,'portfolio/'+length), data).then(() => {
+      // Success.
+      console.log("done")
+    }).catch((error) => {
+      console.log(error);
+    });
 
     // Form the request for sending data to the server.
     const options = {
@@ -56,10 +92,10 @@ const EmailSection = () => {
           try my best to get back to you!
         </p>
         <div className="socials flex flex-row gap-2">
-          <Link href="github.com">
+          <Link href="https://github.com/Deepakjain1234">
             <Image src={GithubIcon} alt="Github Icon" />
           </Link>
-          <Link href="linkedin.com">
+          <Link href="https://www.linkedin.com/in/deepak-jain-1a324020a/">
             <Image src={LinkedinIcon} alt="Linkedin Icon" />
           </Link>
         </div>
