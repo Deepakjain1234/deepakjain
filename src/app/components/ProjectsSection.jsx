@@ -59,6 +59,24 @@ const projectsData = [
     gitUrl: "https://github.com/Deepakjain1234/esummit-23",
     previewUrl: "https://esummit.ecellnitb.in",
   },
+  {
+    id: 7,
+    title: "PeerCT app",
+    description: "PeerCT app based on flutter",
+    image: "/images/projects/7.png",
+    tag: ["All", "Mobile"],
+    gitUrl: "https://github.com/Deepakjain1234/peerct",
+    previewUrl: "https://play.google.com/store/apps/details?id=com.peerct30.peerct",
+  },
+  {
+    id: 8,
+    title: "Spark App",
+    description: "Spark App based on react native",
+    image: "/images/projects/8.png",
+    tag: ["All", "Mobile"],
+    gitUrl: "https://github.com/hushl-spark/spark.love",
+    previewUrl: "/",
+  },
 ];
 
 const ProjectsSection = () => {
